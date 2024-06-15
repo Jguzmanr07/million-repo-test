@@ -36,20 +36,20 @@ jobs:
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
-      testResultsFiles: 'results.xml'  # Archivo generado por pytest
+      testResultsFiles: 'results.xml'
     displayName: 'Publish Test Results'
   
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src'
-      includeRootFolder: false 
+      includeRootFolder: false
       archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'  # Ruta y nombre del archivo de artefacto
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)_$(BuildDateTime).zip'
       replaceExistingArchive: true
-    displayName: 'Artifacts'
-  
+    displayName: 'Archive artifacts'
+
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Ruta del directorio de artefactos a publicar
-      artifactName: 'drop'  # Nombre del artefacto
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'drop'
     displayName: 'Publish artifact'
