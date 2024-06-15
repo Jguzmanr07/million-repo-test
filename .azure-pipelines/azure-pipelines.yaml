@@ -7,7 +7,6 @@ trigger:
     exclude:
       - azure-pipelines.yaml
 
-
 pool:
   vmImage: 'ubuntu-latest'
 
