@@ -12,7 +12,7 @@
 │   └── azure-pipelines.png
 │   └── azure-pipelines-1.png
 ├── k8s
-│   ├── k8s-pod.yaml
+│   ├── python-k8s-pod.yaml
 │   └── namespaces.yaml
 ├── src
 │   ├── templates
