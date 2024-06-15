@@ -1,12 +1,10 @@
-
-# Definición de la etapa de trabajo
 trigger:
   branches:
     include:
       - main
     exclude:
       - .azure-pipelines/azure-pipelines.yaml
-      
+
 pool:
   vmImage: 'ubuntu-latest'
 
