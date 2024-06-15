@@ -12,7 +12,7 @@
 │   └── azure-pipelines.png
 │   └── azure-pipelines-1.png
 ├── k8s
-│   ├── python-k8s-pod.yaml
+│   ├── python-python-k8s-pod.yaml
 │   └── namespaces.yaml
 ├── src
 │   ├── templates
@@ -32,7 +32,7 @@
 
 - **Dockerfile**: Configuration file to build the Docker image for the Python microservice.
 
-- **Kubernetes Pod (`k8s/k8s-pod.yaml`)**: Kubernetes configuration to deploy the microservice on a Kubernetes cluster.
+- **Kubernetes Pod (`k8s/python-k8s-pod.yaml`)**: Kubernetes configuration to deploy the microservice on a Kubernetes cluster.
 
 - **Azure DevOps Pipeline (`.azure-pipelines/azure-pipelines.yml`)**: YAML configuration for the Azure DevOps pipeline, including build, test, and artifact publishing steps.
 
