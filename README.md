@@ -1,4 +1,22 @@
-# DevOps for Robotics Company
+# DevOps For Million Company
+
+## structure
+
+```
+/
+├── .azure-pipelines
+│   └── azure-pipelines.yml
+├── cloudflare
+│   └── cloudflare-worker.js
+├── k8s
+│   └── k8s-pod.yaml
+├── src
+│   ├── app.py
+│   └── requirements.txt
+├── Dockerfile
+├── README.md
+└── observability-diagram.png
+```
 
 ## Files
 
