@@ -1,35 +1,50 @@
+
+# Definición de la etapa de trabajo
 trigger:
-- main
+  branches:
+    include:
+      - main
+    exclude:
+      - azure-pipelines.yaml
+
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'YourDockerRegistryConnection'  # Nombre de la conexión al registro de Docker en Azure DevOps
-    repository: 'your-docker-repo'
-    command: 'build'
-    Dockerfile: '**/Dockerfile'
-    tags: |
-      $(Build.BuildId)
+jobs:
+- job: Build_And_Test
+  displayName: 'Build and Test'
+  steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.11'
+      
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r /src/requirements.txt
+    displayName: 'Install dependencies'
+  
+  - script: |
+      pytest  # Ejecutar pruebas unitarias con pytest
+    displayName: 'Run tests'
+  
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'  # Formato de los resultados de las pruebas
+      testResultsFiles: '**/TEST-*.xml'  # Patrón para buscar los archivos de resultados de pruebas
+    displayName: 'Publish Test Results'
 
-- script: |
-    # Ejecutar pruebas unitarias
-    python -m unittest discover -s tests -p '*_test.py'
-  displayName: 'Run unit tests'
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)'  # Carpeta raíz de los archivos a archivar
+      includeRootFolder: false  # No incluir la carpeta raíz en el archivo
+      archiveType: 'zip'  # Tipo de archivo a crear
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'  # Ruta y nombre del archivo de artefacto
+      replaceExistingArchive: true
+    displayName: 'Archive artifacts'
 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'YourDockerRegistryConnection'
-    repository: 'your-docker-repo'
-    command: 'push'
-    Dockerfile: '**/Dockerfile'
-    tags: |
-      $(Build.BuildId)
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: 'drop'
-    publishLocation: 'Container'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Ruta del directorio de artefactos a publicar
+      artifactName: 'drop'  # Nombre del artefacto
+    displayName: 'Publish artifact'
