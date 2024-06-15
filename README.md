@@ -13,9 +13,12 @@
 ├── src
 │   ├── app.py
 │   └── requirements.txt
+├── tests
+│   ├── test_app.py
+│   └── requirements.txt
 ├── Dockerfile
-├── README.md
-└── observability-diagram.png
+├── observability-diagram.png
+└── README.md
 ```
 
 ## Files
