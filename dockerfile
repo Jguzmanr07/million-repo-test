@@ -1,4 +1,3 @@
-# Use the official Python image from the DockerHub
 FROM python:3.9-slim
 
 # Set the working directory
