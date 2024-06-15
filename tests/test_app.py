@@ -12,13 +12,13 @@ def test_hello(client):
     """Prueba del endpoint principal '/'."""
     response = client.get('/')
     assert response.status_code == 200
-    
+
     # Decodificar el contenido HTML de la respuesta
     html_content = response.data.decode('utf-8')
-    
+
     # Utilizar BeautifulSoup para analizar el contenido HTML
     soup = BeautifulSoup(html_content, 'html.parser')
-    
+
     # Buscar el mantenimiento en el contenido HTML
     maintainer_info = soup.find('strong', string='Maintainer:')
     assert maintainer_info is not None
