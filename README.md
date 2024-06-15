@@ -3,17 +3,20 @@
 ## structure
 
 ```
-/MILLIOON-REPO-TEST
+/MILLION-REPO-TEST
 ├── .azure-pipelines
 │   └── azure-pipelines.yml
 ├── cloudflare
 │   └── cloudflare-worker.js
+├── images
+│   └── azure-pipelines.png
+│   └── diagram.jpg
 ├── k8s
-│   └── k8s-pod.yaml
-    └── namespaces.yaml
+│   ├── k8s-pod.yaml
+│   └── namespaces.yaml
 ├── src
-│   └── templates
-│       └── index.yaml
+│   ├── templates
+│   │   └── index.yaml
 │   ├── app.py
 │   └── requirements.txt
 ├── tests
