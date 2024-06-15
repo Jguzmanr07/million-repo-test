@@ -5,8 +5,8 @@ trigger:
     include:
       - main
     exclude:
-      - azure-pipelines.yaml
-
+      - .azure-pipelines/azure-pipelines.yaml
+      
 pool:
   vmImage: 'ubuntu-latest'
 
