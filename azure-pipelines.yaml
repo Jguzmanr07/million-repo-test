@@ -29,7 +29,6 @@ jobs:
   
   - script: |
       export PYTHONPATH=$(pwd)/src
-      pytest
       pytest --junitxml=results.xml
     displayName: 'Run tests'
   
