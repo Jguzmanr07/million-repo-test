@@ -25,8 +25,9 @@ jobs:
     displayName: 'Install dependencies'
   
   - script: |
-      python -m pip install --upgrade pip
-      pytest  # Ejecutar pruebas unitarias con pytest
+      python -m pip install pytest
+      export PYTHONPATH=$(pwd)/src
+      pytest
     displayName: 'Run tests'
   
   - task: PublishTestResults@2
