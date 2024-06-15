@@ -1,0 +1,2 @@
+flask
+pytest==7.6.1
