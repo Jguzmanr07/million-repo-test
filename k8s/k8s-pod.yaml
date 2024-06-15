@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: python-microservice
+  namespace: tech.prod
+spec:
+  containers:
+  - name: python-microservice-container
+    image: your-docker-repo/python-microservice:latest
+    resources:
+      limits:
+        memory: "3Gi"
+    ports:
+    - containerPort: 80
+    env:
+    - name: ENV
+      value: "production"
+  network:
+    name: internal-prod
