@@ -5,23 +5,31 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: UsePythonVersion@0
+- task: Docker@2
   inputs:
-    versionSpec: '3.x'
-    addToPath: true
+    containerRegistry: 'YourDockerRegistryConnection'  # Nombre de la conexión al registro de Docker en Azure DevOps
+    repository: 'your-docker-repo'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(Build.BuildId)
 
 - script: |
-    python -m pip install --upgrade pip
-    pip install -r src/requirements.txt
-  displayName: 'Install dependencies'
-
-- script: |
-    python -m unittest discover src/tests
+    # Ejecutar pruebas unitarias
+    python -m unittest discover -s tests -p '*_test.py'
   displayName: 'Run unit tests'
 
-- task: PublishPipelineArtifact@1
+- task: Docker@2
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
+    containerRegistry: 'YourDockerRegistryConnection'
+    repository: 'your-docker-repo'
+    command: 'push'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      $(Build.BuildId)
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'drop'
-    publishLocation: 'Pipeline'
-  displayName: 'Publish Artifact'
+    publishLocation: 'Container'
