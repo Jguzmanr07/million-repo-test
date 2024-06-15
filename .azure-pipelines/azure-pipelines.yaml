@@ -48,7 +48,7 @@ jobs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
       includeRootFolder: false
       archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)_$(BuildDateTime).zip'  # Ruta y nombre del archivo de artefacto
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)_$(BuildDateTime).zip'
       replaceExistingArchive: true
     displayName: 'Archive artifacts'
 
