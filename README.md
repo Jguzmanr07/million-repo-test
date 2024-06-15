@@ -10,7 +10,7 @@
 │   └── cloudflare-worker.js
 ├── images
 │   └── azure-pipelines.png
-│   └── diagram.jpg
+│   └── azure-pipelines-1.png
 ├── k8s
 │   ├── k8s-pod.yaml
 │   └── namespaces.yaml
@@ -36,6 +36,16 @@
 
 - **Azure DevOps Pipeline (`.azure-pipelines/azure-pipelines.yml`)**: YAML configuration for the Azure DevOps pipeline, including build, test, and artifact publishing steps.
 
+#### Evidence Images
+
+
+![Azure Pipelines 1](images/azure-pipelines.png)
+
+
+![Azure Pipelines 2](images/azure-pipelines-1.png)
+
+
+
 - **Cloudflare Worker (`cloudflare/cloudflare-worker.js`)**: Cloudflare Worker to resize and cache images based on client requests.
 
   The Cloudflare Worker handles requests to resize images. The request should include a `url` parameter pointing to the image and optionally a `width` parameter to specify the desired width. If `width` is not specified, a default value of 600 pixels is used.
@@ -52,7 +62,8 @@
 
 - **Cloudflare Worker**: Adjust parameters such as width, height, and caching as per your specific requirements for resizing and caching images on Cloudflare.
 
-# Cloudflare Worker para Redimensionar Imágenes
+# Cloudflare Worker for Image Resizing
+
 
 Este Cloudflare Worker está diseñado para redimensionar imágenes dinámicamente y almacenarlas en caché utilizando el servicio de redimensionamiento de imágenes de Weserv. Puedes usar este worker para obtener imágenes redimensionadas simplemente modificando los parámetros de la URL.
 
@@ -137,8 +148,16 @@ https://cdn.millionandup.com/image-resizing?image=https://maustorageprod.blob.co
 
 - Get a resized image with width set to 600 pixels:
 
+
+
 ```plaintext
 https://worker-image-resizer.cloudmind.workers.dev/images/?url=https://maustorageprod.blob.core.windows.net/spinfile/Spin/Data/Estate/IMG/733595ac7750469d92325e641b1e6549.svg
+```
+
+- Get a resized image with width set to 100 pixels:
+
+```plaintext
+https://worker-image-resizer.cloudmind.workers.dev/images/?url=https://maustorageprod.blob.core.windows.net/spinfile/Spin/Data/Estate/IMG/733595ac7750469d92325e641b1e6549.svg&width=100
 ```
 
 ## Usage
