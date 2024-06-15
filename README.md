@@ -167,5 +167,6 @@ https://worker-image-resizer.cloudmind.workers.dev/images/?url=https://maustorag
 3. Deploy configurations and artifacts to their respective platforms (Kubernetes, Azure DevOps, Cloudflare).
 
 ## Diagram
+Observability Diagram
 
-![Observability Diagram](observability-diagram.png)
+![Observability Diagram](images/observability-diagram.png)
