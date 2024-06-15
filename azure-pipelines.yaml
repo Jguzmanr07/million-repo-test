@@ -22,21 +22,23 @@ jobs:
   - script: |
       python -m pip install --upgrade pip
       pip install pytest
+      pip install pytest-junitxml
       pip install --upgrade beautifulsoup4
       pip install -r src/requirements.txt
     displayName: 'Install dependencies'
   
   - script: |
-      
       export PYTHONPATH=$(pwd)/src
       pytest
+      pytest --junitxml=results.xml
     displayName: 'Run tests'
   
   - task: PublishTestResults@2
     inputs:
-      testResultsFormat: 'JUnit'  # Formato de los resultados de las pruebas
-      testResultsFiles: '**/TEST-*.xml'  # Patrón para buscar los archivos de resultados de pruebas
+      testResultsFormat: 'JUnit'
+      testResultsFiles: 'results.xml'  # Archivo generado por pytest
     displayName: 'Publish Test Results'
+  
 
   - task: ArchiveFiles@2
     inputs:
