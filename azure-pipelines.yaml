@@ -1,4 +1,3 @@
-
 # Definición de la etapa de trabajo
 trigger:
   branches:
@@ -6,7 +5,6 @@ trigger:
       - main
     exclude:
       - azure-pipelines.yaml
-
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -26,25 +24,28 @@ jobs:
       pip install --upgrade beautifulsoup4
       pip install -r src/requirements.txt
     displayName: 'Install dependencies'
-  
+
   - script: |
-      export PYTHONPATH=$(pwd)/src
-      pytest
       pytest --junitxml=results.xml
-    displayName: 'Run tests'
-  
+    displayName: 'Run Tests'
+
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
       testResultsFiles: 'results.xml'
     displayName: 'Publish Test Results'
-  
+
+  - script: |
+      date=$(date +'%Y%m%d-%H%M%S')
+      echo "##vso[task.setvariable variable=BuildDateTime]$date"
+    displayName: 'Set Build DateTime Variable'
+
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)/src'
       includeRootFolder: false
       archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)_$(BuildDateTime).zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)_$(BuildDateTime).zip'  # Ruta y nombre del archivo de artefacto
       replaceExistingArchive: true
     displayName: 'Archive artifacts'
 
