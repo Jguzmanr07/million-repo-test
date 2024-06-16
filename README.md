@@ -169,4 +169,4 @@ https://worker-image-resizer.cloudmind.workers.dev/images/?url=https://maustorag
 ## Diagram
 Observability Diagram
 
-![Observability Diagram](images/observability-diagram.png)
+![Observability Diagram](images/observabilidad-diagram.png)
