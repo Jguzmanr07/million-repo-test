@@ -16,44 +16,18 @@ spec:
   containers:
   - name: python-microservice-container
     image: jguzman07/millionrepotest:latest
-    # resources:
-    #   limits:
-    #     memory: "3Gi"
-    #     cpu: "1"
+    resources:
+      limits:
+        memory: "3Gi" # Para asignar 3Gb de memory se puede cambiar a 3Gi
+        cpu: "1"
     ports:
     - containerPort: 80
     env:
-    - name: ENVIRONMENT
+    - name: environment
       value: "production"
-    - name: INTERNAL_NETWORK
+    - name: internal_network
       value: "internal prod"
-    securityContext:
-      capabilities:
-        drop:
-        - ALL
-      allowPrivilegeEscalation: false
-      runAsUser: 10000
-      readOnlyRootFilesystem: true
-    livenessProbe:
-      httpGet:
-        path: /healthz
-        port: 80
-      initialDelaySeconds: 30
-      periodSeconds: 10
-    readinessProbe:
-      httpGet:
-        path: /readiness
-        port: 80
-      initialDelaySeconds: 5
-      periodSeconds: 10
-    volumeMounts:
-    - name: config-volume
-      mountPath: /app/config
-      readOnly: true
-  volumes:
-  - name: config-volume
-    configMap:
-      name: app-config
+  restartPolicy: Always
 ---
 apiVersion: v1
 kind: Service

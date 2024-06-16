@@ -20,10 +20,5 @@ def hello_world():
 def health_check():
     return 'OK', 200
 
-# Endpoint de preparación del servicio
-@app.route('/readiness')
-def readiness_check():
-    return 'OK', 200
-
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
