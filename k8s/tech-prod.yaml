@@ -11,6 +11,8 @@ metadata:
   labels:
     app: python-microservice
 spec:
+  nodeSelector:
+    nodetype: docker-desktop
   containers:
   - name: python-microservice-container
     image: jguzman07/millionrepotest:latest
@@ -19,7 +21,7 @@ spec:
         memory: "3Gi"
         cpu: "1"
     ports:
-    - containerPort: 8080
+    - containerPort: 80
     env:
     - name: ENVIRONMENT
       value: "production"

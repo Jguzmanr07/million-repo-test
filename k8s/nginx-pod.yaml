@@ -1,34 +1,48 @@
 apiVersion: v1
-kind: Service
+kind: Namespace
 metadata:
   name: tech-prod
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-nginx-svc
   labels:
-    app: tech-prod
+    app: nginx
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: tech-prod
+    app: nginx
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tech-prod
+  name: my-nginx
   labels:
-    app: tech-prod
+    app: nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: tech-prod
+      app: nginx
   template:
     metadata:
       labels:
-        app: tech-prod
+        app: nginx
     spec:
+      nodeSelector:
+        nodetype: docker-desktop
       containers:
-      - name: tech-prod
+      - name: python-microservice-container
+        image: jguzman07/millionrepotest:latest
+        resources:
+          limits:
+            memory: "3Gi"
+            cpu: "1"
+      containers:
+      - name: nginx
         image: jguzman07/millionrepotest:latest
         ports:
         - containerPort: 80
