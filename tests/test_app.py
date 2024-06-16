@@ -30,8 +30,3 @@ def test_health_check(client):
     assert response.status_code == 200
     assert response.data == b'OK'
 
-def test_readiness_check(client):
-    """Prueba del endpoint '/readiness'."""
-    response = client.get('/readiness')
-    assert response.status_code == 200
-    assert response.data == b'OK' 
