@@ -32,5 +32,6 @@ spec:
         image: jguzman07/millionrepotest:latest
         resources:
           limits:
-            memory: "3Gi"
-            cpu: "1"
+            memory: "3Gi"  # Limita el uso de memoria a 3GB
+        ports:
+        - containerPort: 80

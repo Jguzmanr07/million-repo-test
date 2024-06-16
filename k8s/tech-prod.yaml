@@ -18,7 +18,7 @@ spec:
     image: jguzman07/millionrepotest:latest
     resources:
       limits:
-        memory: "3Gi"
+        memory: "3Gi" # Para asignar 3Gb de memory se puede cambiar a 3Gi
         cpu: "1"
     ports:
     - containerPort: 80
