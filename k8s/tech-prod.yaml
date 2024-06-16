@@ -23,9 +23,9 @@ spec:
     ports:
     - containerPort: 80
     env:
-    - name: ENVIRONMENT
+    - name: environment
       value: "production"
-    - name: INTERNAL_NETWORK
+    - name: internal_network
       value: "internal prod"
   restartPolicy: Always
 ---
