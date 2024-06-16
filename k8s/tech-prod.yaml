@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tech-prod
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: python-microservice-pod
+  namespace: tech-prod
+  labels:
+    app: python-microservice
+spec:
+  containers:
+  - name: python-microservice-container
+    image: jguzman07/millionrepotest:latest
+    resources:
+      limits:
+        memory: "3Gi"
+        cpu: "1"
+    ports:
+    - containerPort: 80
+    env:
+    - name: ENVIRONMENT
+      value: "production"
+    - name: INTERNAL_NETWORK
+      value: "internal prod"
+  restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tech-prod-svc
+  namespace: tech-prod
+  labels:
+    app: python-microservice
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: python-microservice
