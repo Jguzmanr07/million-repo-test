@@ -143,7 +143,7 @@ The script begins by adding an event listener for fetch events. When a request c
 - Original image:
 
 ```plaintext
-https://cdn.millionandup.com/image-resizing?image=https://maustorageprod.blob.core.windows.net/spinfile/Spin/Data/Estate/IMG/733595ac7750469d92325e641b1e6549.svg?v=945
+https://maustorageprod.blob.core.windows.net/spinfile/Spin/Data/Estate/IMG/733595ac7750469d92325e641b1e6549.svg
 ```
 
 - Get a resized image with width set to 600 pixels:
